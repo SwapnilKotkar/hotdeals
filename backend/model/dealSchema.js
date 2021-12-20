@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
  
+//created deal schema to store deal details on mongodb cloud
 const dealSchema = new mongoose.Schema({
     dealLink: {
         type: String,
@@ -23,6 +24,7 @@ const dealSchema = new mongoose.Schema({
     }
 });
 
+//given a name for collection for storing documents on mongodb cloud
 const Deal = mongoose.model('DEAL', dealSchema);
 
 module.exports = Deal;

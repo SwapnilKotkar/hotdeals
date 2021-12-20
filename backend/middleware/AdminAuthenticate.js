@@ -1,15 +1,24 @@
 const jwt = require('jsonwebtoken');
-const Admin = require("../model/adminSchema");
+const Express = require('express');
 const dotenv = require('dotenv');
-const Cookies = require( 'cookies' );
+const app = Express();
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+//imported adminSchema
+const Admin = require("../model/adminSchema");
 
 dotenv.config({path: './config.env'});
 
+//fetching cookie from website and verifying it
 const AdminAuthenticate = async (req, res, next) => {
     try{
-        // const cookies = new Cookies(req, res)
+        const cookies = req.cookies.adminsignintoken;
         const token = cookies.get('adminsignintoken');
         console.log(token);
+
+        //verifying the token with SECRET_KEY
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
         const rootAdmin = await Admin.findOne({_id: verifyToken._id, "tokens.token": token });
@@ -19,7 +28,6 @@ const AdminAuthenticate = async (req, res, next) => {
         }
         else{
             res.status(500).send('admin found');
-            // return;
         }
 
         req.token = token;
@@ -31,7 +39,6 @@ const AdminAuthenticate = async (req, res, next) => {
     }catch(err){
         res.status(401).send('Unauthorized: No token provided');
         console.log(err);
-        // return;
     }
 }
 

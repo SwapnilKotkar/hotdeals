@@ -3,21 +3,21 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const app = express();
-const cookieParser = require('cookie-parser');
 
+//imported middleware for authentication
 const userAuthenticate = require("../middleware/UserAuthenticate");
 const adminAuthenticate = require("../middleware/AdminAuthenticate");
 
+//created connection with mongodb atlas cloud
 require('../db/conn');
+
+//imported schemas
 const User = require("../model/userSchema");
 const Admin = require("../model/adminSchema");
 const Deal = require("../model/dealSchema");
 
-router.get('/', (req, res) =>{
-    res.send(`Hello from router js`);
-});
 
-
+//new user registration
 router.post('/register', async (req, res) => {
     const {firstName, lastName, email, password} = req.body;
 
@@ -44,6 +44,8 @@ router.post('/register', async (req, res) => {
 
 });
 
+
+//existing user login and creating token on successful login
 router.post('/signin', async (req, res) => {
     try{
         const {email, password} = req.body;
@@ -52,18 +54,21 @@ router.post('/signin', async (req, res) => {
             return res.status(400).json({error: "please fill the data"});
         }
 
+        //finding the email is exists already or not
         const userLogin = await User.findOne({ email: email });
 
         if(userLogin){
+            //comapring the password entered in login form with password stored in database
             const isMatch = await bcrypt.compare(password, userLogin.password);
 
+            //calling the method to generate token for user
             const token = await userLogin.generateAuthToken();
 
+            //creating the cookie for genearted token
             res.cookie('signintoken', token, {
                 expires:new Date(Date.now() + 25892000000),
-                httpOnly:true
+                httpOnly:true,
             });
-            // console.log(req.cookies.signintoken); 
 
             if(!isMatch){
                 res.status(400).json({error: "user invalid pass"});
@@ -79,6 +84,8 @@ router.post('/signin', async (req, res) => {
         }
 });
 
+
+//existing admin login and creating token on successful login
 router.post('/adminsignin', async (req, res) => {
     try{
         const {email, password} = req.body;
@@ -87,13 +94,17 @@ router.post('/adminsignin', async (req, res) => {
             return res.status(400).json({error: "please fill the data"})
         }
 
+        //finding the email is exists already or not
         const adminLogin = await Admin.findOne({ email: email });
 
         if(adminLogin){
+            //comapring the password entered in login form with password stored in database
             const isMatch = await bcrypt.compare(password, adminLogin.password);
 
+            //calling the method to generate token for user
             const token = await adminLogin.generateAuthToken();
 
+            //creating the cookie for genearted token
             res.cookie("adminsignintoken", token, {
                 expires:new Date(Date.now() + 25892000000),
                 httpOnly:true
@@ -113,6 +124,7 @@ router.post('/adminsignin', async (req, res) => {
         }
 });
 
+//adding a new deal to database
 router.post('/submitdeal', async (req, res) => {
     const {dealLink, dealTitle, dealPrice, dealCategory, dealImage} = req.body;
 
@@ -121,6 +133,7 @@ router.post('/submitdeal', async (req, res) => {
     }
 
     try{
+        //finding the deal is exists already or not
         const dealExist = await Deal.findOne({dealLink: dealLink});
 
         if(dealExist){
@@ -138,43 +151,27 @@ router.post('/submitdeal', async (req, res) => {
     }
 });
 
-app.use(cookieParser());
-router.get('/userprofile', async (req, res) =>{
-    const token = req.cookie.signintoken;
-        console.log(token);
-        const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
-
-        const rootUser = await User.findOne({_id: verifyToken._id, "tokens.token": token });
-
-        if(!rootUser) { 
-            throw new Error('User not found');
-        }       
-        else{
-            res.status(500).send('user found');
-            // return;
-        }
-
-        req.token = token;
-        req.rootUser = rootUser;
-        req.userID = rootUser._id;
-
+//authenticating user
+router.get('/userprofile', userAuthenticate, async (req, res) =>{
     res.send(req.rootUser);
-    console.log(req.rootUser);
 });
 
+//authenticating admin
 router.get('/adminprofile', adminAuthenticate ,(req, res) =>{
     res.send(req.rootAdmin);
 });
 
-router.get('/userlogout', userAuthenticate ,(req, res) =>{
-    res.clearCookie('signintoken', {path: '/'});
-    res.status(200).send("user logout");
-});
+//user logout
+// router.get('/userlogout', userAuthenticate ,(req, res) =>{
+//     res.clearCookie('signintoken', {path: '/'});
+//     res.status(200).send("user logout");
+// });
 
+
+//admin logout
 // router.get('/adminlogout', adminAuthenticate ,(req, res) =>{
 //     res.clearCookie('adminsigntoken', {path: '/'});
 //     res.status(200).send("admin logout");
 // });
-
 
 module.exports = router; 
