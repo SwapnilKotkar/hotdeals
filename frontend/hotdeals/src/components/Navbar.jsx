@@ -35,7 +35,7 @@ const Navbar = () =>{
                     <li className="nav-item">
                     <NavLink className="nav-link" to="/adminlogout">AdminLogout</NavLink>
                     </li>   */}
-                    <li class="nav-item dropdown">
+                    <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href='' id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             User/Admin
                         </a>
