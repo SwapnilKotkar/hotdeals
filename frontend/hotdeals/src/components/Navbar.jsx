@@ -23,7 +23,7 @@ const Navbar = () =>{
                     <li className="nav-item">
                     <NavLink className="nav-link" to="/adminlogin">Admin Login</NavLink>
                     </li>  
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                     <NavLink className="nav-link" to="/userprofile">userHome</NavLink>
                     </li>  
                     <li className="nav-item">
@@ -34,10 +34,19 @@ const Navbar = () =>{
                     </li> 
                     <li className="nav-item">
                     <NavLink className="nav-link" to="/adminlogout">AdminLogout</NavLink>
-                    </li>  
+                    </li>   */}
+                    <li class="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href='' id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            User/Admin
+                        </a>
+                        <ul className="dropdown-menu p-0" aria-labelledby="navbarDropdown">
+                            <li><NavLink className="dropdown-item" to='/userprofile'>Profile</NavLink></li>
+                            <li><NavLink className="dropdown-item" to='/'>Logout</NavLink></li>
+                        </ul>
+                    </li>
                     <li>
                     <NavLink className="nav-link p-1" to="/submitdeal"><button className="btn btn-info" type="submit" >Submit Deal</button></NavLink>                
-                    </li>         
+                    </li>      
                 </ul>
                 </div>
             </div>
