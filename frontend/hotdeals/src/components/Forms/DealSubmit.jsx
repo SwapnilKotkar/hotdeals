@@ -63,28 +63,30 @@ const DealSubmit = () =>{
     return(
         <>
             <Navbar/>
-            <div className="container-fluid col-md-4 mt-4 mb-4 rounded-3 shadow d-flex justify-content-center deal_submit_form">
-                <form method="POST" className="m-3" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form_title mb-4 text-center"><h1>Submit a deal</h1></div>
-                    <div className="form-row row justify-content-center">
-                        <div className="form-group col-10 mb-3">
-                            <label htmlFor="dealLink">Product Link</label>
-                            <input type="url" className="form-control" name="dealLink" ref={register({ required: "link is required" })} value={deal.dealLink} onChange={handleChange} />
-                            <p className="warning">{errors.dealLink?.message}</p>
-                        </div>
-                        <div className="form-group col-10 mb-3">
-                            <label htmlFor="dealTitle">Product Title</label>
-                            <input type="text" className="form-control" name="dealTitle" ref={register({ required: "product name is required" })} value={deal.dealTitle} onChange={handleChange}  />
-                            <p className="warning">{errors.dealTitle?.message}</p>
-                        </div>
-                        <div className="form-group col-10 mb-3">
-                            <label htmlFor="dealPrice">Product Price</label>
-                            <input type="number" className="form-control" name="dealPrice" ref={register({ required: "product price is required" })} value={deal.dealPrice} onChange={handleChange}  />
-                            <p className="warning">{errors.dealPrice?.message}</p>
-                        </div>
-                        <div className="form-group col-10 mb-3">
-                        <label htmlFor="dealCategory">Product Category</label>
-                        <select className="form-select" name="dealCategory" ref={register({ required: "product category is required" })} onChange={handleChange}>
+            <div className="container d-flex flex-column justify-content-center p-4" >
+                <div className="container d-flex justify-content-center mb-4">
+                <span className="fs-3 fw-bolder" style={{fontWeight:"400", color:"black"}}>Submit your deal</span>
+                </div>
+                <div className="container d-flex justify-content-center">
+                <form method="POST" className="rounded-5 p-lg-5 p-4 shadow-2-soft" onSubmit={handleSubmit(onSubmit)} noValidate style={{color:"black", fontWeight:"500", backgroundColor:"white"}}>
+                 <div className="form-group">
+                    <label>Deal link</label>
+                    <input type="url" className="form-control rounded-5" name="dealLink" ref={register({ required: "link is required" })} value={deal.dealLink} onChange={handleChange} />
+                    <p className="warning">{errors.dealLink?.message}</p>
+                </div>
+                <div className="form-group">
+                    <label>Deal title</label>
+                    <input type="text" className="form-control rounded-5" name="dealTitle" ref={register({ required: "product name is required" })} value={deal.dealTitle} onChange={handleChange}  />
+                    <p className="warning">{errors.dealTitle?.message}</p>
+                </div>
+                <div className="form-group">
+                    <label>Deal price</label>
+                    <input type="number" className="form-control rounded-5" name="dealPrice" ref={register({ required: "product price is required" })} value={deal.dealPrice} onChange={handleChange}  />
+                    <p className="warning">{errors.dealPrice?.message}</p>
+                </div>
+                <div className="form-group">
+                    <label>Deal Category</label>
+                    <select className="form-select rounded-5" name="dealCategory" ref={register({ required: "product category is required" })} onChange={handleChange}>
                             <option value="">All</option>
                             <option value="Fashion">Fashion</option>
                             <option value="Home & Living">Home & Living</option>
@@ -97,17 +99,18 @@ const DealSubmit = () =>{
                             <option value="Healthy & Beauty">Healthy & Beauty</option>
                         </select>
                         <p className="warning">{errors.dealCategory?.message}</p>
-                        </div>
-                        <div className="form-group col-10 mb-3">
-                            <label htmlFor="dealImage">Product Image</label>
-                            <input type="file" className="form-control" name="dealImage" ref={register({ required: "product image is required" })} value={deal.dealImage} onChange={handleChange}  />
-                            <p className="warning">{errors.dealImage?.message}</p>
-                        </div>                        
-                        <div className="form-group col-10 mb-4">
-                        <button type="submit" className="container btn btn-primary">Submit Deal</button>
-                        </div>
-                    </div>
-                </form> 
+                </div>
+                <div className="form-group">
+                    <label>Deal image</label>
+                    <input type="file" className="form-control rounded-5" name="dealImage" ref={register({ required: "product image is required" })} value={deal.dealImage} onChange={handleChange}  />
+                    <p className="warning">{errors.dealImage?.message}</p>
+                </div>
+                <div className="form-group">
+                    <button type="submit" className="container btn btn-primary btn-lg" ><span className="text-capitalize" style={{fontSize:"14px", fontWeight:"500"}}>Submit deal</span></button>
+                </div>
+               
+                </form>                
+                </div>
             </div>
             <Footer/>
         </>

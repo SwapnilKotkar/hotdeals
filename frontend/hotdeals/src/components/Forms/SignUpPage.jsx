@@ -57,39 +57,48 @@ let SignUpPage = () => {
     
     return(
         <>
-            <div className="container-fluid signup-form d-flex justify-content-center">
-                <form method="POST"  onSubmit={handleSubmit(onSubmit)} noValidate>
-                <h2>Register</h2>
-                <p className="hint-text">Create your account. It's only takes a minute.</p>
+            <div className="container signup-form d-flex flex-column justify-content-center" >
+                <div className="container d-flex justify-content-center mb-4">
+                <span className="fs-3 fw-bolder" style={{fontWeight:"400", color:"black"}}>Create an account</span>
+                </div>
+                <div className="d-flex justify-content-center">
+                <form method="POST" className="rounded-5" onSubmit={handleSubmit(onSubmit)} noValidate style={{color:"black", fontWeight:"500"}}>
                  <div className="form-group">
-                    <input type="text" className="form-control" name="firstName" placeholder="First Name" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
+                    <label>First Name</label>
+                    <input type="text" className="form-control rounded-5 rounded-5" name="firstName" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
                     <p className="warning">{errors.firstName?.message}</p>
                 </div>
                 <div className="form-group">
-                <input type="text" className="form-control" name="lastName" placeholder="Last Name" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
-                <p className="warning">{errors.lastName?.message}</p>
+                    <label>Last Name</label>
+                    <input type="text" className="form-control rounded-5" name="lastName" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
+                    <p className="warning">{errors.lastName?.message}</p>
                 </div>
                 <div className="form-group">
-                    <input type="email" className="form-control" name="email" placeholder="Email" ref={register({ required: "Email is required", pattern: { value: /\S+@\S+\.\S+/i, message: "This is not a valid email" }})} value={values.email} onChange={handleChange} />
+                    <label>Your email</label>
+                    <input type="email" className="form-control rounded-5" name="email"  ref={register({ required: "Email is required", pattern: { value: /\S+@\S+\.\S+/i, message: "This is not a valid email" }})} value={values.email} onChange={handleChange} />
                     <p className="warning">{errors.email?.message}</p>
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" name="password" placeholder="Password" ref={register({ required: "Password is required", minLength: {value: 4, message: "Password must be more than 4 characters" }, maxLength: { value: 10, message: "Password cannot exceed more than 10 characters" }})} value={values.password} onChange={handleChange} />
+                    <label>Password</label>
+                    <input type="password" className="form-control rounded-5" name="password" ref={register({ required: "Password is required", minLength: {value: 4, message: "Password must be more than 4 characters" }, maxLength: { value: 10, message: "Password cannot exceed more than 10 characters" }})} value={values.password} onChange={handleChange} />
                     <p className="warning">{errors.password?.message}</p>
                 </div>       
                 <div className="form-group">
-                    <label className="form-check-label"><input type="checkbox" required /> I accept the <a href={link}>Terms of Use</a> &amp; <a href={link}>Privacy Policy</a></label>
+                    <label className="form-check-label"><input type="checkbox" required /> I accept the <a href={link} style={{color:"blue"}}>Terms of Use</a> &amp; <a href={link} style={{color:"blue"}}>Privacy Policy</a></label>
                 </div>
                 <div className="form-group">
-                    <button type="submit" className="container btn btn-success btn-lg btn-block" >Register Now</button>
+                    <button type="submit" className="container btn btn-primary btn-lg" ><span className="text-capitalize" style={{fontSize:"14px", fontWeight:"500"}}>Register Now</span></button>
                 </div>
                 <div className="text-center mt-3">Already have an account? <NavLink to="/userlogin"><span style={{color:"blue" }} >Sign in</span></NavLink></div>
-                <div className="container-sm d-flex justify-content-center">
-                    <NavLink to="/" className="nav-link p-2 text-muted text-decoration-underline">Home</NavLink>
-                    <NavLink className="nav-link p-2 text-muted text-decoration-underline" to="/userlogin">User Login</NavLink>
-                    <NavLink to="/adminlogin" className="nav-link p-2 text-muted text-decoration-underline">Admin Login</NavLink>
+                <hr className="container"/>
+
+                <div className="container-sm d-flex justify-content-center" >
+                    <NavLink to="/" className="nav-link p-2 " style={{color:"blue"}}>Home</NavLink>
+                    <NavLink className="nav-link p-2 " style={{color:"blue"}} to="/userlogin">User Login</NavLink>
+                    <NavLink to="/adminlogin" className="nav-link p-2 " style={{color:"blue"}}>Admin Login</NavLink>
                 </div>
                 </form>                
+                </div>
             </div>
         </>
     );

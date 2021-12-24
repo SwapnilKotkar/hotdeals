@@ -1,4 +1,4 @@
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import HomePage from "./HomePage";
