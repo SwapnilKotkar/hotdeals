@@ -104,13 +104,13 @@ const AdminProfile = () => {
                                 </div>
                                 <div className="row mt-2">
                                     <div className="col-lg-8 col-md-10 col-sm-12">
-                                    <input name="firstname"  type="text" className="form-control rounded-3" placeholder="first name" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
+                                    <input name="firstName"  type="text" className="form-control rounded-3" placeholder="first name" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
                                     <p className="warning">{errors.firstName?.message}</p>    
                                 </div>
                                 </div>
                                 <div className="row mt-3">
                                 <div className="col-lg-8 col-md-10 col-sm-12">
-                                    <input name="lastname" type="text" className="form-control rounded-3" placeholder="lastname" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
+                                    <input name="lastName" type="text" className="form-control rounded-3" placeholder="lastname" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
                                     <p className="warning">{errors.lastName?.message}</p>
                                 </div>
                                 </div>

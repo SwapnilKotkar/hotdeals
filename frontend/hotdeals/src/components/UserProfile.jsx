@@ -95,7 +95,7 @@ const UserProfile = () => {
                 <form method="POST" onSubmit={handleSubmit(onSubmit)} className="container rounded shadow-5 bg-white ">
                     <div className="row">
                         <div className="col-lg-4 col-md-5 border-right">
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90" /><span className="font-weight-bold">John Tane</span><span className="text-black-50">john@gmail.com</span></div>
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" alt="profile pic" width="90" /><span className="font-weight-bold">John Tane</span><span className="text-black-50">john@gmail.com</span></div>
                         </div>
                         <div className="col-lg-8 col-md-7 col-sm-12">
                             <div className="p-3 py-5">

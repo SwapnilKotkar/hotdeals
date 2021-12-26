@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { userContext } from '../App';
 
 
 const UserLoginPage = () => {
     const link = "";
     const history = useNavigate();
+
+    const {state, dispatch} = useContext(userContext);
 
     const [login, setLogin] = useState({
        email: "",
@@ -42,6 +45,7 @@ const UserLoginPage = () => {
         if(res.status === 400 || !data) {
             window.alert("login failed");
         }else{
+            dispatch({type:"USER", payload:true});
             window.alert("login success");
             history("/");
         }
@@ -51,7 +55,7 @@ const UserLoginPage = () => {
         <>
             <div className="login-form">
             <div className="container d-flex justify-content-center mb-4">
-                <span className="fs-3 fw-bolder" style={{fontWeight:"400", color:"black"}}>Sign in to an account</span>
+                <span className="fs-3 fw-bolder" style={{fontWeight:"400", color:"black"}}>Sign in to account</span>
                 </div>
                 <div className="d-flex justify-content-center">
                 <form method="POST" className='rounded-5' onSubmit={handleSubmit(onSubmit)} style={{backgroundColor:"white", color:"black", fontWeight:"500"}}>
