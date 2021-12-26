@@ -91,77 +91,46 @@ const AdminProfile = () => {
     return(
         <>
             <Navbar />
-            <div className="container mt-5 mb-5" style={{height: "100vh"}}>
-            <div className="row gutters p-5">
-            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div className="card h-100 shadow rounded-3 p-4">
-                <div className="card-body">
-                    <div className="account-settings">
-                        <div className="user-profile">
-                            <h5 className="user-name">Yuki Hayashi</h5>
-                            <h6 className="user-email">yuki@Maxwell.com</h6>
+            <div className="container-fluid mt-lg-5 mt-3 mb-lg-5 mb-3 d-flex justify-content-center" style={{maxWidth:"1000px"}}>
+                <form method="POST" onSubmit={handleSubmit(onSubmit)} className="container rounded shadow-5 bg-white ">
+                    <div className="row">
+                        <div className="col-lg-4 col-md-5 border-right">
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" alt="profile pic" width="90" /><span className="font-weight-bold">John Tane</span><span className="text-black-50">john@gmail.com</span></div>
                         </div>
-                    </div>
-                    <div>
-                        <div>
-                            <h5 className="user-info">User Info</h5>
-                            <p className="user-name mb-0">Jhon</p>
-                            <p className="user-lastname mb-0">Tane</p>
-                            <p className="user-email">yuki@Maxwell.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div className="card h-100 shadow rounded-3 p-4">
-                <form method='POST' onSubmit={handleSubmit(onSubmit)} noValidate className="card-body">
-                    <div className="row gutters">
-                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                            <h6 className="mb-2 text-primary">Personal Details</h6>
-                        </div>
-                        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
-                        <div className="form-group">
-                    <input type="text" className="form-control" name="firstName" placeholder="first name" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
-                    <p className="warning">{errors.firstName?.message}</p>
-                </div>
-                <div className="form-group">
-                <input type="text" className="form-control" name="lastName" placeholder="last name" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
-                <p className="warning">{errors.lastName?.message}</p>
-                </div>
-                <div className="form-group">
-                    <input type="email" className="form-control" name="email" placeholder="email" ref={register({ required: "email is required", pattern: { value: /\S+@\S+\.\S+/i, message: "This is not a valid email" }})} value={values.email} onChange={handleChange} />
-                    <p className="warning">{errors.email?.message}</p>
-                </div>
-                </div>      
-                    </div>
-                    <div className="row gutters mt-5">
-                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                            <h6 className="mb-2 text-primary">Change password</h6>
-                        </div>
-                        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
-                
-                <div className="form-group">
-                    <input type="password" className="form-control" name="password" placeholder="Enter old password" ref={register({ required: "Password is required", minLength: {value: 4, message: "Password must be more than 4 characters" }, maxLength: { value: 10, message: "Password cannot exceed more than 10 characters" }})} value={values.password} onChange={handleChange} />
-                    <p className="warning">{errors.password?.message}</p>
-                </div> 
-                <div className="form-group">
-                    <input type="password" className="form-control" name="newpassword" placeholder="Enter new password" ref={register({ required: "Password is required", minLength: {value: 4, message: "Password must be more than 4 characters" }, maxLength: { value: 10, message: "Password cannot exceed more than 10 characters" }})} value={values.newpassword} onChange={handleChange} />
-                    <p className="warning">{errors.password?.message}</p>
-                </div> 
-                </div>      
-                    </div>
-                    <div className="row gutters mt-3">
-                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div className="text-right m-lg-auto">
-                                <button type="submit" id="submit" name="submit" className="btn btn-primary">Update</button>
+                        <div className="col-lg-8 col-md-7 col-sm-12">
+                            <div className="p-3 py-5">
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 className="text-right">Edit Profile</h6>
+                                </div>
+                                <div className="row mt-2">
+                                    <div className="col-lg-8 col-md-10 col-sm-12">
+                                    <input name="firstname"  type="text" className="form-control rounded-3" placeholder="first name" ref={register({ required: "first name is required" })} value={values.firstName} onChange={handleChange} />
+                                    <p className="warning">{errors.firstName?.message}</p>    
+                                </div>
+                                </div>
+                                <div className="row mt-3">
+                                <div className="col-lg-8 col-md-10 col-sm-12">
+                                    <input name="lastname" type="text" className="form-control rounded-3" placeholder="lastname" ref={register({ required: "last name is required" })} value={values.lastName} onChange={handleChange} />
+                                    <p className="warning">{errors.lastName?.message}</p>
+                                </div>
+                                </div>
+                                <div className="row mt-3">
+                                    <div className="col-lg-8 col-md-10 col-sm-12">
+                                    <input name="email" type="text" className="form-control rounded-3" placeholder="email" ref={register({ required: "email is required", pattern: { value: /\S+@\S+\.\S+/i, message: "This is not a valid email" }})} value={values.email} onChange={handleChange} />
+                                    <p className="warning">{errors.email?.message}</p>    
+                                </div>
+                                </div>
+                                <div className="row mt-3">
+                                <div className="col-lg-8 col-md-10 col-sm-12">
+                                    <input name="password" type="text" className="form-control rounded-3" placeholder="password" ref={register({ required: "password is required" })} value={values.password} onChange={handleChange} />
+                                    <p className="warning">{errors.password?.message}</p>
+                                </div>
+                                </div>
+                                <div className="mt-3 text-right"><button className="btn btn-primary profile-button" type="submit"><span className='text-capitalize'>Save Profile</span></button></div>
                             </div>
                         </div>
                     </div>
                 </form>
-            </div>
-            </div>
-            </div>
             </div>
             <Footer/>
         </>

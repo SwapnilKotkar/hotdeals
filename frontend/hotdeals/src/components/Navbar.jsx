@@ -79,7 +79,7 @@ const Navbar = () =>{
 </div>
 </div> */}
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-none" style={{fontSize:"15px"}}>
-  <div class="container " >
+  <div class="container-lg">
   <NavLink className="navbar-brand" to="/">hotDeals</NavLink>
     <button
       class="navbar-toggler"
@@ -129,8 +129,8 @@ const Navbar = () =>{
 </nav>
 
 <div class="  bg-light d-flex justify-content-center">
-<div className="container-sm p-0 m-2 row d-flex justify-content-center">  
-  <div className="dropdown col-lg-1 col-3 d-flex justify-content-center">
+<div className="container-lg p-0 m-2 row d-flex justify-content-center">  
+  <div className="dropdown col-lg-1 col-md-2 col-sm-2 col-3 d-flex justify-content-center">
                 <button className="btn btn-outline-primary p-2 m-0 rounded-3 border-1"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="text-capitalize" style={{fontSize:"13px"}}>Category</span>
                 </button>
