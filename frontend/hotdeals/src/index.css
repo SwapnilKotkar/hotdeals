@@ -16,7 +16,7 @@ code {
 }
 
 .selector-for-some-widget {
-    box-sizing: content-box;
+    box-sizing: border-box;
   }
   .navbar-nav{
     margin-left: auto;
@@ -199,14 +199,6 @@ code {
   padding: 3px 5px;
 }
 
-/* body {
-  margin: 0;
-  padding-top: 40px;
-  color: #2e323c;
-  background: #f5f6fa;
-  position: relative;
-  height: 100%;
-} */
 .account-settings .user-profile {
   margin: 0 0 1rem 0;
   padding-bottom: 1rem;
@@ -261,10 +253,12 @@ code {
   margin-bottom: 1rem;
 }
 
-
  @media screen and (max-width: 480px) {
    .deal_details{
      padding: 0px !important;
+   }
+   .deal_card{
+     font-size: 13px;
    }
   .footer_columns{
     flex-direction: column;

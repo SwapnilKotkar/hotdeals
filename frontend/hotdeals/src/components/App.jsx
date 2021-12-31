@@ -7,6 +7,7 @@ import UserLoginPage from "./Forms/UserLoginPage";
 import SignUpPage from './Forms/SignUpPage';
 import AdminLoginPage from "./Forms/AdminLoginPage";
 import DealSubmit from "./Forms/DealSubmit";
+import DealDetails from "./DealDetails";
 import UserProfile from "./UserProfile";
 import AdminProfile from "./AdminProfile";
 import UserLogout from "./UserLogout";
@@ -27,6 +28,7 @@ const App = () =>{
             <Route exact path='/signup' element={<SignUpPage/>} />
             <Route exact path='/adminlogin' element={<AdminLoginPage/>} />
             <Route exact path='/submitdeal' element={<DealSubmit/>} />
+            <Route exact path='/dealdetails' element={<DealDetails/>} />
             <Route exact path='/userprofile' element={<UserProfile/>} />
             <Route exact path='/adminprofile' element={<AdminProfile/>} />
             <Route exact path='/userlogout' element={<UserLogout/>} />
