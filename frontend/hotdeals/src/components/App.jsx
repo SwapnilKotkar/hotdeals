@@ -12,16 +12,16 @@ import UserProfile from "./UserProfile";
 import AdminProfile from "./AdminProfile";
 import UserLogout from "./UserLogout";
 import AdminLogout from "./AdminLogout";
-import { initialState, reducer } from "../reducer/useReducer";
+// import { initialState, reducer } from "../reducer/useReducer";
 
-export const userContext = createContext();
+// export const userContext = createContext();
 
 const App = () =>{
-    const [state, dispatch] = useReducer(reducer, initialState);
+    // const [state, dispatch] = useReducer(reducer, initialState);
 
     return(
         <>
-        <userContext.Provider value={{state, dispatch}}>
+        {/* <userContext.Provider value={{state, dispatch}}> */}
         <Routes>
             <Route exact path='/' element={<HomePage/>} />
             <Route exact path='/userlogin' element={<UserLoginPage/>} />
@@ -35,7 +35,7 @@ const App = () =>{
             <Route exact path='/adminlogout' element={<AdminLogout/>} />
             <Route path='*' element={<ErrorPage/>} />
         </Routes>
-        </userContext.Provider>
+        {/* </userContext.Provider> */}
         </>
     );
 }

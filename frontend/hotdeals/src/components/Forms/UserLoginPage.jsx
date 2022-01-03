@@ -1,14 +1,20 @@
 import { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { userContext } from '../App';
+import { useSelector, useDispatch } from 'react-redux';
+import {userAction} from "../actions/index";
+// import { userContext } from '../App';
 
 
 const UserLoginPage = () => {
+
+    const userStatus = useSelector((state) => state.userReducer);
+    const dispatch = useDispatch();
+
     const link = "";
     const history = useNavigate();
 
-    const {state, dispatch} = useContext(userContext);
+    // const {state, dispatch} = useContext(userContext);
 
     const [login, setLogin] = useState({
        email: "",
@@ -45,7 +51,8 @@ const UserLoginPage = () => {
         if(res.status === 400 || !data) {
             window.alert("login failed");
         }else{
-            dispatch({type:"USER", payload:true});
+            // dispatch({type:"USER", payload:true});
+            dispatch(userAction());
             window.alert("login success");
             history("/");
         }

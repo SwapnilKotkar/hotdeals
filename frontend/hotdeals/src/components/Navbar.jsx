@@ -1,23 +1,43 @@
-import React, { useContext } from 'react';
+// import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { userContext } from './App';
+import { useSelector } from 'react-redux';
+// import { userContext } from './App';
 
 const Navbar = () =>{
     const link = "#";
+    const userStatus = useSelector((state) => state.userReducer);
+    const adminStatus = useSelector((state) => state.adminReducer);
 
-    const {state,  dispatch} = useContext(userContext);
+
+    // const {state,  dispatch} = useContext(userContext);
 
     const Menu = () => {
-      if(state) {
+      if(userStatus === "user") {
         return(
           <>
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">User/Admin</a>
+              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">User</a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><NavLink className="dropdown-item" to='/userprofile'>Profile</NavLink></li>
+                <li><NavLink className="dropdown-item" to='/'>Logout</NavLink></li>
+              </ul>
+            </li>
+          </>
+        );
+      }
+      else if(adminStatus === "admin") {
+        return(
+          <>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Admin</a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><NavLink className="dropdown-item" to='/adminprofile'>Profile</NavLink></li>
                 <li><NavLink className="dropdown-item" to='/'>Logout</NavLink></li>
               </ul>
             </li>

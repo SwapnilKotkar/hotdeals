@@ -1,9 +1,16 @@
 import { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from 'react-redux';
+import {adminAction} from "../actions/index";
+
 
 
 const AdminLoginPage = () => {
+
+    const adminStatus = useSelector((state) => state.adminReducer);
+    const dispatch = useDispatch();
+
     const link = "";
     const history = useNavigate();
 
@@ -44,6 +51,7 @@ const AdminLoginPage = () => {
         if(res.status === 400 || !data) {
             window.alert("login failed");
         }else{
+            dispatch(adminAction());
             window.alert("login success");
             history("/");
         }

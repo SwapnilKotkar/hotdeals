@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { userContext } from './App';
+// import { userContext } from './App';
 import Navbar from './Navbar';
 
 const UserLogout = () => {
 
-    const {state, dispatch} = useContext(userContext);
+    // const {state, dispatch} = useContext(userContext);
 
     const history = useNavigate();
 
@@ -18,7 +18,7 @@ const UserLogout = () => {
             },
             credentials: "include"
         }).then((res) => {
-            dispatch({type:"USER", payload:false});
+            // dispatch({type:"USER", payload:false});
             history('/userlogin', {replace: true});
             if(res.status !== 200){
                 const error = new Error(res.error);

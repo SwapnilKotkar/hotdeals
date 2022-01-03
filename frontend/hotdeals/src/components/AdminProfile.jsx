@@ -100,7 +100,7 @@ const AdminProfile = () => {
                         <div className="col-lg-8 col-md-7 col-sm-12">
                             <div className="p-3 py-5">
                                 <div className="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 className="text-right">Edit Profile</h6>
+                                    <h6 className="text-right">Edit Admin Profile</h6>
                                 </div>
                                 <div className="row mt-2">
                                     <div className="col-lg-8 col-md-10 col-sm-12">
