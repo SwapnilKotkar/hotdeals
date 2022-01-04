@@ -2,13 +2,14 @@
 import "bootstrap/dist/js/bootstrap.bundle";
 import Navbar from './Navbar';
 import Deals from './Deals';
+import DealsPage from "./DealsPage";
 import Footer from "./Footer";
 
 const HomePage = () =>{
     return(
         <>
         <Navbar/>
-        <Deals/>
+        <DealsPage/>
         <Footer/>
     </>
     );

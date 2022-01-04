@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { userContext } from './App';
 import Navbar from './Navbar';
 
 const UserLogout = () => {
 
-    // const {state, dispatch} = useContext(userContext);
 
     const history = useNavigate();
 
