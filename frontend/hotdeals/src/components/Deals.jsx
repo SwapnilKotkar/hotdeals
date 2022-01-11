@@ -9,8 +9,8 @@ const Deals = ({deals}) =>{
                 <div className="row g-2"> 
                     {deals.map((val, index) => {
                         return (
-                                    <DealsCard key={index} dealName={val.name} dealImage={val.image} dealPrice={val.price} dealInfo={val.info} dealLink ={val.link} />
-                                )
+                                    <DealsCard key={index} index={index} dealName={val.name} dealImage={val.image} dealPrice={val.price} dealInfo={val.info} dealLink ={val.link} />
+                               )
                     })}
                 </div>
             </div>                
